@@ -14,7 +14,8 @@ function(hljs) {
         'nonmutating operator override postfix precedence prefix right set '+
         'unowned unowned safe unsafe weak willSet',
       literal: 'true false nil',
-      built_in: 'abs advance alignof alignofValue assert bridgeFromObjectiveC ' +
+      built_in: 
+        'abs advance alignof alignofValue assert bridgeFromObjectiveC ' +
         'bridgeFromObjectiveCUnconditional bridgeToObjectiveC ' +
         'bridgeToObjectiveCUnconditional c contains count countElements ' +
         'countLeadingZeros debugPrint debugPrintln distance dropFirst dropLast dump ' +
@@ -29,6 +30,11 @@ function(hljs) {
         'withUnsafePointerToObject withUnsafePointers withVaList'
     };
 
+  var COCOA_TYPE = {
+    className: 'type',
+    begin: '\\b(UI|NS|CG)[A-Z][\\w\']*',
+    relevance: 1
+  };
   var TYPE = {
     className: 'type',
     begin: '\\b[A-Z][\\w\']*',
@@ -61,11 +67,12 @@ function(hljs) {
       QUOTE_STRING_MODE,
       hljs.C_LINE_COMMENT_MODE,
       BLOCK_COMMENT,
+      COCOA_TYPE,
       TYPE,
       NUMBERS,
       {
         className: 'func',
-        beginKeywords: 'func', end: /(\{)|(\->)/, excludeEnd: true,
+        beginKeywords: 'func', end: /\)|\{|\->|$/, excludeEnd: true,
         contains: [
           hljs.inherit(hljs.TITLE_MODE, {begin: /[A-Za-z$_][0-9A-Za-z$_]*/}),
           {
@@ -80,7 +87,7 @@ function(hljs) {
               hljs.C_LINE_COMMENT_MODE,
               hljs.C_BLOCK_COMMENT_MODE
             ],
-            illegal: /["'\(]/
+            illegal: /["']/
           }
         ],
         illegal: /\[|%/
