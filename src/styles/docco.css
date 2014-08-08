@@ -3,10 +3,12 @@ Docco style used in http://jashkenas.github.com/docco/ converted by Simon Madine
 */
 
 .hljs {
-  display: inline-block;
+  display: block;
+  overflow-x: auto;
   padding: 0.5em;
   color: #000;
   background: #f8f8ff;
+  -webkit-text-size-adjust: none;
 }
 
 .hljs-comment,
@@ -36,6 +38,7 @@ Docco style used in http://jashkenas.github.com/docco/ converted by Simon Madine
 .hljs-string,
 .hljs-tag .hljs-value,
 .hljs-phpdoc,
+.hljs-dartdoc,
 .tex .hljs-formula {
   color: #219161;
 }
